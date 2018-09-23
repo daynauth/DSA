@@ -23,7 +23,6 @@ int main(){
     strcpy(names[0], "spiderman");
     strcpy(names[1], "wonderwoman");
     strcpy(names[2], "batman");
-    printf("%s\n", names[0]);
 
     insertionSort(names, num_of_names, sizeof(char) * length_of_names, compareStr);
 /*
@@ -48,10 +47,10 @@ int main(){
 void allocate(stringArray *words, size_t num_words, size_t word_len){
   size_t i = 0;
 
-  *words = (stringArray)malloc(sizeof(char *) * num_words);
+  *words = malloc(sizeof(char *) * num_words);
  
   for(i = 0; i < num_words; i++)
-    (*words)[i] = (string)malloc(sizeof(char) * word_len);
+    (*words)[i] = malloc(sizeof(char) * word_len);
 }
 
 void free_array(stringArray *array, size_t num_words){
