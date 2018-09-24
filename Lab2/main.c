@@ -9,7 +9,6 @@
 typedef char *string;
 typedef string *stringArray;
 
-void printList(int *A, int n);
 int compareInt(const void *key1, const void *key2);
 int compareStr(const void *key1, const void *key2);
 
@@ -35,6 +34,8 @@ int main()
   strcpy(names[2], "batman");
 
   /* Now the strings can be sorted using an insertion sort.
+   * Since we're passing an array of character pointers, the
+   * size of each element is sizeof(char *).
    */
   insertionSort(names, NUMBER_OF_NAMES, sizeof(char *), compareStr);
 
