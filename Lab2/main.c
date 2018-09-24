@@ -20,7 +20,7 @@ int main()
 {
   size_t i;
 
-  stringArray names;
+  stringArray names = NULL;
 
   /* We first need to allocate memory to hold the
    * strings we need to sort.

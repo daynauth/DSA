@@ -21,7 +21,7 @@ void insertionSort(void const *A, size_t n, size_t vSize, comparePtr compare){
   size_t i;
 
   char *data = (char *)A;
-  void *key;
+  void *key = NULL;
 
   /* Allocate memory that matches size of every element */
   key = malloc(vSize);
