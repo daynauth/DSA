@@ -4,18 +4,20 @@
 #include "iSort.h"
 
 void insertionSort(void const *A, int n, int vSize, comparePtr compare){
+    (void) compare;
     int i;
 
     char *data = (char *)A;
-    void *key;
+    char *key;
 
-    if((key = (char *)malloc(sizeof(vSize))) == NULL){
+    if((key = malloc((vSize))) == NULL){
         printf("Out of memory\n");
         exit(1);
     }
 
-    for(i = 1; i < n; i++){
+    for(i = 0; i < n; i++){
         memcpy(key, data + i * vSize, vSize);
+        //fprintf(stdout, "Key: %s\n", key);
         int j = i - 1;
 
         while(j >= 0 && compare(&data[j * vSize], key) > 0){

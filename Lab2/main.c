@@ -10,19 +10,22 @@ void printList(int *A, int n);
 int compareInt(const void *key1, const void *key2);
 int compareStr(const void *key1, const void *key2);
     
-void allocate(stringArray *words, size_t num_words, size_t word_len);
-void free_array(stringArray *array, size_t num_words);
+void allocate(string *words, size_t num_words, size_t word_len);
+void free_array(string *array, size_t num_words);
 
 int main(){
     int num_of_names = 3, length_of_names = 20;
-    int i; 
+    int i;
 
-    stringArray names;
+    string names;
     allocate(&names, num_of_names, length_of_names);
     
-    strcpy(names[0], "spiderman");
-    strcpy(names[1], "wonderwoman");
-    strcpy(names[2], "batman");
+    memcpy(names + (0 * length_of_names), "spiderman", length_of_names);
+    memcpy(names + (1 * length_of_names), "wonderwoman", length_of_names);
+    memcpy(names + (2 * length_of_names), "batman", length_of_names);
+    //strcpy(names[0], "spiderman");
+    //strcpy(names[1], "wonderwoman");
+    //strcpy(names[2], "batman");
 
     insertionSort(names, num_of_names, sizeof(char) * length_of_names, compareStr);
 /*
@@ -42,22 +45,27 @@ int main(){
 
     printf("\n");
     */
+    for(i = 0; i < 3; i++)
+    {
+        printf("%s\n", names + (i * length_of_names));
+    }
 }
 
-void allocate(stringArray *words, size_t num_words, size_t word_len){
-  size_t i = 0;
+void allocate(string *words, size_t num_words, size_t word_len){
+  //size_t i = 0;
 
-  *words = malloc(sizeof(char *) * num_words);
+  *words = malloc(sizeof(char *) * num_words * word_len);
  
-  for(i = 0; i < num_words; i++)
-    (*words)[i] = malloc(sizeof(char) * word_len);
+  //for(i = 0; i < num_words; i++)
+  //  (*words)[i] = malloc(sizeof(char) * word_len);
 }
 
-void free_array(stringArray *array, size_t num_words){
-  size_t i = 0;
+void free_array(string *array, size_t num_words){
+  (void)num_words;
+  //size_t i = 0;
  
-  for(i = 0; i < num_words; i++)
-    free((*array)[i]);
+  //for(i = 0; i < num_words; i++)
+  //  free((*array)[i]);
   
   free(*array);
 }
