@@ -29,7 +29,7 @@ void insertionSort(void const *A, size_t n, size_t vSize, comparePtr compare){
   /* Ensure we successfully allocated memory */
   if(key == NULL)
   {
-    printf("Out of memory\n");
+    fprintf(stderr, "Out of memory\n");
     exit(EXIT_FAILURE);
   }
 
