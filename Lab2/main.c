@@ -29,9 +29,9 @@ int main()
   /* After memory has been allocated, we can now store
    * the strings we need to sort in the allocated memory.
    */
-  strcpy(names[0], "spiderman");
-  strcpy(names[1], "wonderwoman");
-  strcpy(names[2], "batman");
+  strcpy(names[0], "spiderman\0");
+  strcpy(names[1], "wonderwoman\0");
+  strcpy(names[2], "batman\0");
 
   /* Now the strings can be sorted using an insertion sort.
    * Since we're passing an array of character pointers, the
