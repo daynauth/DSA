@@ -17,7 +17,7 @@ void free_array(stringArray *array, size_t num_words);
 
 int main()
 {
-  size_t i;
+  size_t i = 0;
 
   stringArray names = NULL;
 
