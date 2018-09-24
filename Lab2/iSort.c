@@ -8,16 +8,15 @@ void insertionSort(void const *A, int n, int vSize, comparePtr compare){
     int i;
 
     char *data = (char *)A;
-    char *key;
+    void *key;
 
     if((key = malloc((vSize))) == NULL){
         printf("Out of memory\n");
         exit(1);
     }
 
-    for(i = 0; i < n; i++){
+    for(i = 1; i < n; i++){
         memcpy(key, data + i * vSize, vSize);
-        //fprintf(stdout, "Key: %s\n", key);
         int j = i - 1;
 
         while(j >= 0 && compare(&data[j * vSize], key) > 0){
