@@ -10,7 +10,7 @@ Each node can be implemented in C as a `struct` that contains a variable for the
 and a variable that points to the next node in the list. 
 
 
-```
+```C
 /* Simple node for list */
 struct node{
   int data; /* Data held by node */
@@ -27,7 +27,7 @@ member variable of another, e.g. `n1.next = &n2`
 
 
 
-```
+```C
   struct node n1;
   struct node n2;
   struct node n3;
@@ -105,7 +105,7 @@ moving the `current` node down the list until all the values are printed out.
 This can be accomplisted by using a function that takes the `current` node as 
 input and recursively prints `current.data` until a `NULL` node is encountered. 
 
-```
+```C
 void printList(struct node *current){
     if(current != NULL){
       fprintf(stdout, "Data: %d\n", current->data); 
@@ -119,7 +119,7 @@ Write a function that prints the list in reverse.
 
 Similarly, the creation of new nodes can be done with a function.
 
-```
+```C
  struct node createNode(int data){
     struct node newNode;
     newNode.data = data;
