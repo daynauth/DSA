@@ -56,7 +56,7 @@ to the first node in the list. Once we have printed the data in the list
 our pointer node will move down the list by assigning itself to the next node 
 in the list via `current = current->next`.
 
-```
+```C
   //This will be the pointer we move from one node to the other
   struct node *current = NULL;
 
@@ -130,7 +130,7 @@ The creation, linking and printing of our linked list can now be shortened as
 shown 
 below.
 
-```
+```C
   struct node n1 = createNode(22);
   struct node n2 = createNode(10);
   struct node n3 = createNode(9);
@@ -172,7 +172,7 @@ its address instead.
 We achieve this by now declaring our list as a pointer, so declaring a node becomes
 `struct node *n1`. The code to create the nodes and print them becomes:
   
-```
+```C
   struct node *n1 = createNode(22);
   struct node *n2 = createNode(10);
   struct node *n3 = createNode(9);
@@ -203,7 +203,7 @@ Because we are only creating a variable that stores the address of the nodes,
 we need to manually allocate chunks of memory from the heap by calling
 the `malloc` function. 
 
-```
+```C
 struct node *createNode(int data){
     struct node *newNode = malloc(sizeof(struct node));
 
@@ -225,7 +225,7 @@ aliases to these data type and makes implementation a bit more managable.
 
 `typedef` is simply an alias for a datatype. E.g.
 
-```
+```C
 typdef int myNumber;
 myNumber n = 5
 ```
@@ -234,7 +234,7 @@ Here `myNumber` is just an alias for `int`.
 Rather than calling `struct node n1` to declare a node, we can use typedef on
 our struct implementation to make node creation a bit shorter.
 
-```
+```C
 typedef struct _node{
   int data;
   struct _node *next;
@@ -245,7 +245,7 @@ A node can simpily be created using `node n1` or a pointer to a node as `nodePtr
 We can use typedef to create multiplie aliases for the same data type in order 
 to differential it between the different context that these data types are used. 
 
-```
+```C
 typedef nodePtr List
 ```
 Here we created a alias for nodePtr that will help us to distinguish between
@@ -254,7 +254,7 @@ later.)
 
 Putting these together, our entire program now becomes: 
 
-```
+```C
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -328,7 +328,7 @@ becomes unusable to the program.
 C provides the `free` function that allows us to reclaim memory that is no longer
 being used. 
 
-```
+```C
 //create memory for the pointer variable p
 int *p = malloc(sizeof(int));
 
@@ -341,8 +341,8 @@ free(p);
 Having created new nodes and allocated memory from the heap, we need to manual 
 destroy the list before the program exits. This can be done with the following function:
 
-```
-void LIST_distroy(List *l){
+```C
+void LIST_destroy(List *l){
     nodePtr current = *l;
     nodePtr next;
 
@@ -364,13 +364,13 @@ the advantage of being able to be cast into any other type that we wish.
 
 We'll find define a node data alias as: 
 
-```
+```C
 typedef void *nodeData;
 ```
 
 Then change the structure to:
 
-```
+```C
 typedef struct _node{
     nodeData data;
     struct _node *next;
@@ -380,7 +380,7 @@ typedef struct _node{
 
 Next the argument of the `createNode` function will be modified as:  
 
-```
+```C
 nodePtr createNode(nodeData data){
 //the rest of the function remains the same. 
 }
@@ -395,7 +395,7 @@ achieve passing functions to other functions.
 
 Define a generic print callback function as:
 
-```
+```C
 typedef void (* printFunction)(const void *data);
 ```
 
@@ -414,7 +414,7 @@ void LIST_print(List l, printFunction f){
 Lets say our list data are actually integers. We can now defined a printInt function
 as:
 
-```
+```C
 void printInt(const void *data){
     fprintf(stdout, "data: %d\n", *(int *)data);
 }
@@ -506,7 +506,7 @@ That's better.
 
 Let's clean this up a bit and make things a bit more readable
 
-```
+```C
 void LIST_append(nodePtr *head, nodeData data){
     nodePtr current = *head;
     nodePtr newNode = createNode(data);
