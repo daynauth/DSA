@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+//Linked List ADT operations
 typedef void *nodeData;
 
 typedef struct _node{
@@ -17,8 +18,9 @@ void LIST_free(nodePtr current);
 int LIST_isEmpty(List l);
 typedef void (* printFunction)(const void *data);
 void LIST_print(List l, printFunction f);
-void printInt(const void *data);
 void LIST_destroy(List *l);
+
+void printInt(const void *data);
 
 int main(){
     List l = NULL;
@@ -31,8 +33,7 @@ int main(){
 
 
     LIST_print(l, printInt);
-    //LIST_free(l);
-    LIST_destroy(l);
+    LIST_destroy(&l);
     return EXIT_SUCCESS;
 }
 

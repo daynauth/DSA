@@ -531,3 +531,22 @@ nodePtr LIST_last(List l){
 }
 
 ```
+
+The implementation in main function of our program is given below. Here we take
+and an array of numbers 1, 2, 3, 4, 5 and add each number to a linked list. 
+Once the list has been populated, we print the elements of the list before finally
+destroying the list and freeing up its memory.  
+
+```C
+List l = NULL;
+int arr[] = {1,2,3,4,5}, i;
+
+for(i = 0; i < 5; i++){
+    //pass a reference to the list and the data to be added
+    LIST_append(&l, arr + i);
+}
+
+
+LIST_print(l, printInt);
+LIST_destroy(&l);
+```
