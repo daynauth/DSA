@@ -17,7 +17,7 @@ void free_array(stringArray *array, size_t num_words);
 
 int main()
 {
-  size_t i;
+  size_t i = 0;
 
   stringArray names = NULL;
 
@@ -47,6 +47,7 @@ int main()
 
   /* Free the memory we allocated to store the strings */
   free_array(&names, NUMBER_OF_NAMES);
+
 
   return EXIT_SUCCESS;
 }
@@ -107,4 +108,8 @@ int compareStr(const void *key1, const void *key2)
 
   /* Return result of comparsion */
   return strcmp(s1, s2);
+}
+
+int compareInt(const void *key1, const void *key2){
+    return *(int *)key1 - *(int *)key2;
 }
