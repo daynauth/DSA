@@ -550,3 +550,31 @@ for(i = 0; i < 5; i++){
 LIST_print(l, printInt);
 LIST_destroy(&l);
 ```
+
+### Insert at the top of the list
+Adding a node to the start of the list is also known as a `push` operation. 
+
+<img src="linkedlists_push.png">
+
+The variable of the new node will be pointed to the head of the list, following
+by the new node becoming the new head of the list.
+
+<img src="linkedlists_push2.png">
+
+The push operation accepts a pointer to the node pointer and node data. A new node
+is created that points to the head of the list. The new node then becomes the 
+head of the list.
+
+```C
+void LIST_push(List *l, nodeData data){
+    nodePtr newNode = createNode(data);
+
+    newNode->next = *l;
+    *l = newNode;
+}
+
+```
+
+#### Question
+Modify the existing program above to add values at the start of the linked list 
+rather than the end. 
