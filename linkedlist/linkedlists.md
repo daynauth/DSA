@@ -25,7 +25,7 @@ space.
 
 
 
-## Singlely Linked List Implementation
+## Singly Linked List Implementation
 Each node can be implemented in C as a `struct` that contains a variable for the data
 and a variable that points to the next node in the list. 
 
