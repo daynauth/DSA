@@ -5,6 +5,26 @@ a linear order.
 
 <img src="linkedlists.png">
 
+## Why Linked List over arrays
+Both linked lists and arrays are linear data structures and can accomplish the 
+same operations. Both allow items to be added and retieved with arrays having
+a runtime of O(1) for insertion and retrival while linked list have O(n).
+
+While arrays have faster access time, they do come with a few shortcoming:
+
+1. The size of the array is fixed. Once the array is initialized in the code it 
+remains that size for the lifetime of the program. Arrays can be dynamically
+allocated at runtime and its size can be reallocated during the runtime of the 
+program, however, this requires more advanced knowledge of pointers and is more
+difficult to implement than linked lists.
+2. By making array sizes static; programmers have a hard time knowing what size 
+to set beforehand. Programmers generally set a size large enough array to 
+facilitate the data that the program will accept. This is inefficient since the 
+data could be a fracton the size of the array, which results in a lot of wasted
+space.   
+
+
+
 ## Singlely Linked List Implementation
 Each node can be implemented in C as a `struct` that contains a variable for the data
 and a variable that points to the next node in the list. 
@@ -578,3 +598,37 @@ void LIST_push(List *l, nodeData data){
 #### Question
 Modify the existing program above to add values at the start of the linked list 
 rather than the end. 
+
+
+### Insert into any position
+<img src="linkedlists_insert1.png">
+
+For the general insert, we need the node before the new item is inserted, lets call
+it `prev`. We'll call our new node, `newNode`. The basic steps to insert a new node are:
+
+1. Create `newNode`
+2. Point the next element of the new node to the node after the position that 
+you're inserting into i.e., `newNode->next = prev->next`
+3. Point the previous node to the new node. `prev->next = newNode`
+
+
+<img src="linkedlists_insert2.png">
+
+The core for insertion is given below, where `position` is just an alias for 
+`nodePtr`
+
+```C
+void LIST_insert(position p, nodeData data){
+    nodePtr newNode = createNode(data);
+
+    newNode->next = p->next;
+    p->next = newNode;
+}
+```
+
+
+
+#### Question
+What happens to the function `LIST_insert` if `postition p` is the head of an
+empty list. Correct the code to account for this.
+
