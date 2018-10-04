@@ -653,3 +653,7 @@ void LIST_remove(position p){
     free(temp);
 }
 ```
+
+#### Question
+The code above deletes the node after `postion p`, write a function that deletes
+before the input `position p`.
