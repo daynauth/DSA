@@ -632,3 +632,7 @@ void LIST_insert(position p, nodeData data){
 What happens to the function `LIST_insert` if `postition p` is the head of an
 empty list. Correct the code to account for this.
 
+#### Question
+Write a function that inserts an element at the n-th position of the list. The
+function should take the list and an integer as the argument and return the node.
+
