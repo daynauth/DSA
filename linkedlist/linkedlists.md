@@ -636,3 +636,20 @@ empty list. Correct the code to account for this.
 Write a function that inserts an element at the n-th position of the list. The
 function should take the list and an integer as the argument and return the node.
 
+### Deleting from a list
+<img src="linkedlists_delete.png">
+
+Deleting from a list is straight forward. The code below deletes a node after the 
+input `position p`. A `temp` variable is created to hold the variable to be 
+deleted, then the previous node `p` is pointed to the node after the node to be
+deleted `p->next = temp->next`. 
+
+The `free` function then reclaims the memory used by the deleted node.
+
+```C
+void LIST_remove(position p){
+    nodePtr temp = p->next;
+    p->next = temp->next;
+    free(temp);
+}
+```
