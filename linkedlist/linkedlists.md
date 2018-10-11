@@ -657,3 +657,110 @@ void LIST_remove(position p){
 #### Question
 The code above deletes the node after `postion p`, write a function that deletes
 before the input `position p`.
+
+## Doubly Linked List
+<img src="linkedlists_double.png">
+
+Doubly linked lists are the same as the singly linked lists except
+for the extra pointer that points to the previous node. 
+
+
+```C
+typedef struct _node{
+    int data;
+    struct _node *prev;
+    struct _node *next;
+} node, *nodePtr;
+
+typedef nodePtr list;
+typedef nodePtr position;
+```
+
+New nodes are created in much the same way except for setting the 
+extra pointer to `null`.
+
+```C
+nodePtr create_node(int data){
+    nodePtr newNode = malloc(sizeof(node));
+
+    if(newNode == NULL){
+        printf("Node cannot be created\n");
+        exit(1);
+    }
+
+    newNode->data = data;
+    newNode->prev = NULL;
+    newNode->next = NULL;
+    return newNode;
+}
+```
+
+### Appending to doubly linked list
+Set the previous pointer of `newNode` to point to the tail of the 
+list `newNode->prev = current`.
+
+```C
+void LIST_append(list *l, int data){
+    nodePtr current = *l;
+    nodePtr newNode = create_node(data);
+
+    if(current == NULL){
+        *l = newNode;
+    }
+    else{
+        while(current->next != NULL){
+            current = current->next;
+        }
+
+        current->next = newNode;
+        newNode->prev = current;
+    }
+}
+```
+
+### Searching the list for an item
+To each for the item, we iterate through the list until the item
+is located. A recursive function for searching is given below, 
+write a non-recursive version of this function.
+
+```C
+nodePtr LIST_find(list l, int data){
+    if(l == NULL) return NULL;
+    else if(l->data == data)return l;
+    else return LIST_find(l->next, data);
+}
+```
+
+Pulling everything together, our list can be implemented as follows:
+
+```C
+int main(){
+    list l = NULL;
+
+    LIST_append(&l, 1);
+    LIST_append(&l, 2);
+    LIST_append(&l, 3);
+    LIST_append(&l, 4);
+    LIST_append(&l, 5);
+
+    LIST_print(l);
+
+    nodePtr p = LIST_find(l, 3);
+    if(p != NULL){
+        printf("we have found %d\n", p->data);
+        printf("the next node contains %d\n", p->next->data);
+        printf("the previous node contains %d\n", p->prev->data);
+    }
+
+    LIST_destroy(&l);
+
+    return 0;
+}
+
+```
+
+#### Question
+Write a function that appends inserts a new node into any position on 
+the list.
+
+
